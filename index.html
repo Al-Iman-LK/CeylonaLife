@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TouristAttraction","name":"Ceylona Life · Sky Gazing AstroTour","address":{"@type":"PostalAddress","addressLocality":"Passikudah","addressCountry":"Sri Lanka"},"telephone":"+94762720256","email":"ceylonalife@gmail.com"}
 </script>
@@ -21,17 +22,17 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --ivory:#FAF8F5;
-  --indigo:#2D1B6E;
-  --indigo-soft:#4A1F8C;
-  --teal:#2A9D8F;
-  --teal-deep:#1A7A6B;
+  --indigo:#4A2D8F;
+  --indigo-soft:#5E3FAF;
+  --teal:#4B9E9A;
+  --teal-deep:#2E7D7A;
   --gold:#F4C542;
-  --coral:#E76F51;
-  --mint:#C8F0E0;
-  --peach:#FFD6C0;
-  --lavender:#E8D5FF;
-  --ice:#C5E8FF;
-  --butter:#FFF0B3;
+  --coral:#FF8FA3;
+  --mint:#DFF7EA;
+  --peach:#FFDCC8;
+  --lavender:#EBD9FF;
+  --ice:#D8EEFF;
+  --butter:#FFF2BB;
   --ink:#3D3D45;
   --muted:#6b6b76;
   --font-display:'Baloo 2',system-ui,sans-serif;
@@ -46,6 +47,8 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
+.phone-screen{position:relative;z-index:1;background:var(--ivory);}
+.topbar, main, .site-footer, .sticky-cta, .lightbox{position:relative;z-index:2;}
 img{max-width:100%;display:block;}
 a{color:inherit;}
 button{font-family:inherit;}
@@ -105,7 +108,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 /* ---------- LAYOUT HELPERS ---------- */
 .section{padding:50px 20px;}
 .section-head{text-align:center;margin-bottom:28px;}
-.eyebrow{display:inline-block;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-deep);background:rgba(42,157,143,.12);padding:5px 14px;border-radius:20px;margin-bottom:10px;}
+.eyebrow{display:inline-block;font-weight:700;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-deep);background:rgba(75,158,154,.14);padding:5px 14px;border-radius:20px;margin-bottom:10px;}
 .section-head h2{font-weight:700;font-size:clamp(1.5rem,5.5vw,2rem);color:var(--indigo);margin-bottom:8px;}
 .section-head p{color:var(--muted);font-size:.95rem;max-width:320px;margin:0 auto;line-height:1.55;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
@@ -133,26 +136,27 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 /* ---------- BUTTONS ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.95rem;padding:14px 22px;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform .15s ease;}
 .btn:active{transform:scale(.96);}
-.btn-primary{background:linear-gradient(135deg,var(--indigo),var(--indigo-soft));color:#FFF3D6;box-shadow:0 14px 26px -12px rgba(45,27,110,.55);}
+.btn-primary{background:linear-gradient(135deg,#FF8FA3 0%,#8B7CF6 100%);color:#fff;box-shadow:0 14px 26px -12px rgba(139,124,246,.35);}
 .btn-large{width:100%;padding:17px 22px;font-size:1.03rem;}
 .btn-ghost{background:transparent;color:var(--teal-deep);border:2px solid var(--teal);padding:12px 20px;}
 .hero-actions{display:flex;flex-direction:column;gap:12px;margin-top:26px;}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#EDE7FA 0%,#FAF8F5 65%);padding:90px 24px 60px;}
+.hero{position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(160deg,#F8EDFF 0%,#FFF9ED 60%,#FAF8F5 100%);padding:90px 24px 60px;}
 .star-layer{position:absolute;top:0;left:0;border-radius:50%;}
 .star-small{width:1px;height:1px;animation:twinkle 3s ease-in-out infinite alternate;}
 .star-big{width:2px;height:2px;animation:twinkle 4s ease-in-out infinite alternate-reverse;}
 @keyframes twinkle{from{opacity:.35;}to{opacity:1;}}
 .hero-glow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(244,197,66,.35),transparent 70%);top:-60px;right:-90px;filter:blur(6px);pointer-events:none;}
 .hero-content{position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-deep);background:rgba(255,255,255,.72);padding:8px 12px;border-radius:999px;border:1px solid rgba(75,158,154,.18);margin-bottom:14px;}
 .hero h1{font-size:clamp(2rem,8.5vw,2.6rem);color:var(--indigo);line-height:1.18;margin-bottom:16px;}
 .hero p{font-size:1rem;color:rgba(45,27,110,.8);line-height:1.6;max-width:360px;}
 .scroll-cue{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:var(--indigo);font-size:1.3rem;opacity:.55;animation:bounce 1.8s ease-in-out infinite;}
 @keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
 
 /* ---------- SECTION TINTS ---------- */
-.why{background:linear-gradient(180deg,#FFFFFF,#F4FBF8);}
+.why{background:linear-gradient(180deg,#FFFFFF,#F4FBF8);} 
 .journey{background:#FFF8EF;}
 .skyobjects{background:#F8F4FF;}
 .benefits{background:#FFF6F0;}
@@ -204,6 +208,10 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 /* ---------- BOOKING ---------- */
 .contact-row{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap;}
 .contact-pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid rgba(45,27,110,.12);color:var(--indigo);font-weight:700;font-size:.82rem;padding:9px 14px;border-radius:30px;text-decoration:none;cursor:pointer;}
+.social-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.social-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid rgba(45,27,110,.12);color:var(--indigo);box-shadow:0 8px 16px -10px rgba(45,27,110,.22);transition:transform .2s ease,box-shadow .2s ease;}
+.social-link:hover{transform:translateY(-2px);box-shadow:0 12px 22px -12px rgba(45,27,110,.32);} 
+.social-link i{font-size:18px;line-height:1;}
 .contact-note{text-align:center;font-size:.82rem;color:var(--muted);margin-top:18px;line-height:1.5;}
 
 /* ---------- STICKY CTA ---------- */
@@ -223,7 +231,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 
 <div class="phone-frame">
 <div class="phone-screen" id="screen">
-
   <header class="topbar">
     <div class="progress-bar" id="progressBar"></div>
     <div class="topbar-inner">
@@ -250,12 +257,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       <div class="star-layer star-big" id="starsBig"></div>
       <div class="hero-glow"></div>
       <div class="hero-content">
+        <span class="hero-badge"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> A tiny moonlight adventure</span>
         <span class="eyebrow">Ceylona Life · Passikudah, Sri Lanka</span>
-        <h1>Look Up.<br>The Universe Has Been Waiting.</h1>
-        <p>An hour under a sky most people never get to see. Telescopes, laser guided stories, and strangers who become company by the end of the night.</p>
+        <h1>Let’s Go on a<br>Star Hunt Together.</h1>
+        <p>A cheerful little night under the stars with telescopes, glowing constellation stories, and plenty of wonder for kids and families.</p>
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary btn-large" data-wa><span>💬</span> Book Your Night</a>
-          <a href="#journey" class="btn btn-ghost">See How It Works</a>
+          <a href="#" class="btn btn-primary btn-large" data-wa><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Book a Magical Night</a>
+          <a href="#journey" class="btn btn-ghost">See the Adventure</a>
         </div>
       </div>
       <div class="scroll-cue" aria-hidden="true">↓</div>
@@ -264,8 +272,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section why" id="why">
       <div class="section-head reveal">
         <span class="eyebrow">The Setting</span>
-        <h2>Why This Sky Is Different</h2>
-        <p>Passikudah sits in a rare spot on the map. Here is what that means for you.</p>
+        <h2>Why This Sky Feels Magical</h2>
+        <p>Passikudah has a wonderfully dreamy sky, full of sparkles, stories, and secrets waiting to be found.</p>
       </div>
       <div class="grid-2" id="whyGrid"></div>
     </section>
@@ -273,8 +281,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section journey" id="journey">
       <div class="section-head reveal">
         <span class="eyebrow">The Program</span>
-        <h2>Your Night Journey</h2>
-        <p>60 minutes, fully guided, everything included.</p>
+        <h2>Your Mini Moon Adventure</h2>
+        <p>A short, easy, magical journey full of wonder from start to finish.</p>
       </div>
       <div class="timeline" id="timeline">
         <div class="t-track"></div>
@@ -285,8 +293,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section skyobjects" id="sky">
       <div class="section-head reveal">
         <span class="eyebrow">Through The Telescope</span>
-        <h2>What Lives in Tonight's Sky</h2>
-        <p>Sky objects vary by night and season. Our guide brings you the best of what is visible.</p>
+        <h2>What We Might Spot Tonight</h2>
+        <p>Every night brings a new little surprise, and our guide helps you discover the stars in a fun and friendly way.</p>
       </div>
       <div class="carousel" id="skyCarousel"></div>
       <div class="dots" id="skyDots"></div>
@@ -296,7 +304,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       <div class="section-head reveal">
         <span class="eyebrow">Beyond The Telescope</span>
         <h2>What You Will Carry Home</h2>
-        <p>It is more than a night of looking up.</p>
+        <p>It is more than a night of looking up — it is a happy memory to treasure.</p>
       </div>
       <div class="grid-2" id="benefitsGrid"></div>
     </section>
@@ -304,8 +312,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section gallery" id="gallery">
       <div class="section-head reveal">
         <span class="eyebrow">A Look Inside</span>
-        <h2>A Night Like No Other</h2>
-        <p>A glimpse of what waits for you in Passikudah.</p>
+        <h2>A Little Bit of Magic</h2>
+        <p>A glimpse of the cozy, sparkling adventure waiting for you in Passikudah.</p>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
     </section>
@@ -313,7 +321,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section testimonials" id="testimonialsSection">
       <div class="section-head reveal">
         <span class="eyebrow">In Their Words</span>
-        <h2>Hear From People Who Looked Up</h2>
+        <h2>Hear From Happy Star Hunters</h2>
       </div>
       <div class="t-list" id="testimonialsList"></div>
     </section>
@@ -321,14 +329,22 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <section class="section booking" id="booking">
       <div class="section-head reveal">
         <span class="eyebrow">Reserve Your Spot</span>
-        <h2>Ready to Look Up?</h2>
-        <p>Message us on WhatsApp and we will confirm your spot and the program time for the day.</p>
+        <h2>Ready for a Starry Little Adventure?</h2>
+        <p>Message us on WhatsApp and we will help you pick a lovely evening for your family or little explorers.</p>
       </div>
-      <a href="#" class="btn btn-primary btn-large" data-wa><span>💬</span> Book on WhatsApp</a>
+      <a href="#" class="btn btn-primary btn-large" data-wa><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Book Your Star Hunt</a>
+      <div class="social-links" aria-label="Follow Ceylona Life on social media">
+        <a class="social-link" href="https://www.threads.com/@ceylonalife.official?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+        <a class="social-link" href="https://x.com/ceylona_life" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+        <a class="social-link" href="https://web.facebook.com/profile.php?id=61591697211164" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a class="social-link" href="https://www.linkedin.com/in/ceylona-life-943b8a419" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+        <a class="social-link" href="https://www.tiktok.com/@ceylonalife_official" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+        <a class="social-link" href="https://www.instagram.com/ceylonalife.official?igsh=cnVnaDMyNTkxeG52" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      </div>
       <div class="contact-row">
         <a href="tel:+94762720256" class="contact-pill"><span>📞</span> Call</a>
         <button class="contact-pill" id="copyNumber"><span>📋</span> Copy Number</button>
-        <a href="mailto:ceylonalife@gmail.com?subject=Sky%20Gazing%20AstroTour%20Enquiry" class="contact-pill"><span>✉️</span> Email</a>
+        <a href="mailto:ceylonalife@gmail.com?subject=Sky%20Gazing%20AstroTour%20Enquiry" class="contact-pill"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a>
       </div>
       <p class="contact-note">Or simply ask at your hotel reception. We work with partner hotels across Passikudah.</p>
     </section>
@@ -338,12 +354,20 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
   <footer class="site-footer">
     <p class="footer-brand">Ceylona<span class="brand-accent">Life</span></p>
     <p class="footer-line">A tourism experience brand by SkyLab (Pvt) Ltd, Passikudah, Sri Lanka.</p>
-    <p class="footer-quote">Every clear night is a new story.</p>
+    <div class="social-links" aria-label="Follow Ceylona Life on social media">
+      <a class="social-link" href="https://www.threads.com/@ceylonalife.official?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Threads"><i class="fa-brands fa-threads" aria-hidden="true"></i></a>
+      <a class="social-link" href="https://x.com/ceylona_life" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+      <a class="social-link" href="https://web.facebook.com/profile.php?id=61591697211164" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+      <a class="social-link" href="https://www.linkedin.com/in/ceylona-life-943b8a419" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      <a class="social-link" href="https://www.tiktok.com/@ceylonalife_official" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      <a class="social-link" href="https://www.instagram.com/ceylonalife.official?igsh=cnVnaDMyNTkxeG52" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+    </div>
+    <p class="footer-quote">Every clear night is a new little story.</p>
     <p class="footer-copy">© 2026 Ceylona Life. All rights reserved.</p>
   </footer>
 
   <div class="sticky-cta" id="stickyCta">
-    <a href="#" class="btn btn-primary btn-large" data-wa><span>💬</span> Book Your Night</a>
+    <a href="#" class="btn btn-primary btn-large" data-wa><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Book Your Night</a>
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -363,38 +387,39 @@ const WA_NUMBER = '94762720256';
 const WA_MESSAGE = "Hi Ceylona Life! I would like to book the Sky Gazing AstroTour in Passikudah. Could you share availability and pricing?";
 
 const WHY = [
-  {bg:'ice',icon:'🌐',title:'Equatorial Sky',text:'Stand near the equator and both halves of the sky open up. Stars that usually take two trips to see, visible in one sitting.'},
-  {bg:'mint',icon:'🌊',title:'Unobstructed Horizon',text:'The Indian Ocean stretches east with nothing in the way. No buildings, no haze, no competing light.'},
-  {bg:'lavender',icon:'✨',title:'Rare Constellations',text:'The Southern Cross and Orion share the same night here. Most places on Earth cannot say that.'},
-  {bg:'butter',icon:'🌙',title:'Tropical Clear Skies',text:'Warm air and dry season nights give you a sky that rarely lets you down.'}
+  {bg:'ice',icon:'🌐',title:'A Sky Full of Wonder',text:'Being near the equator means you can spot a beautiful mix of stars and constellations in one magical evening.'},
+  {bg:'mint',icon:'🌊',title:'A Big Open View',text:'The ocean horizon feels wide and peaceful, with nothing to block your view of the sky.'},
+  {bg:'lavender',icon:'✨',title:'Secret Star Shapes',text:'The night sky here can reveal special constellations that feel like hidden treasures above you.'},
+  {bg:'butter',icon:'🌙',title:'Soft, Clear Nights',text:'The warm, calm air makes the whole experience feel extra cozy and dreamy.'}
 ];
 
 const STEPS = [
-  {time:'0:00–05',bg:'mint',title:'Welcome',text:'A themed drink, a name tag, and a card that tells you what is coming.'},
-  {time:'0:05–15',bg:'ice',title:'Dark Sky Adaptation',text:'Your eyes adjust while a NASA recording plays low in the background. The stars start to appear.'},
-  {time:'0:15–25',bg:'lavender',title:'Constellation Stories',text:'Our guide traces shapes in the sky with a laser pointer. Old myths meet real science.'},
-  {time:'0:25–32',bg:'butter',title:'Sky Navigation App',text:'Point your phone up and name what you see, with help close by.'},
-  {time:'0:32–45',bg:'peach',title:'Live Telescope View',text:'Saturn, a star cluster, or whatever else the sky offers tonight.'},
-  {time:'0:45–55',bg:'mint',title:'Astrophotography',text:'Shoot through the telescope itself and try to catch the Milky Way on your own camera.'},
-  {time:'0:55–00',bg:'butter',title:'Memory Wrap Up',text:'A photo booth, a short review video, and a small gift to take home.'}
+  {bg:'mint',title:'Hello, Star Friends',text:'We start with a warm welcome and a little introduction to the magical night ahead.'},
+  {bg:'ice',title:'Let Your Eyes Adjust',text:'As the sky grows darker, tiny lights start appearing and the whole world feels more magical.'},
+  {bg:'lavender',title:'Storytime in the Sky',text:'Our guide points out constellations and shares fun stories that make the stars feel alive.'},
+  {bg:'butter',title:'Easy Sky Guidance',text:'A simple app helps everyone spot what they are seeing, with friendly help nearby.'},
+  {bg:'peach',title:'Peek Through the Telescope',text:'Children and grown-ups alike get a wonderful close-up view of Saturn, clusters, and more.'},
+  {bg:'mint',title:'Little Photo Moments',text:'Guests can capture the fun while the guide highlights the sky with a laser pointer.'},
+  {bg:'butter',title:'A Sweet Finish',text:'The evening ends with calm smiles, happy stories, and a magical feeling to remember.'}
 ];
 
 const SKY = [
-  {bg:'butter',emoji:'🪐',title:'Saturn',text:'The rings are real. Most people do not believe it until they look through the eyepiece.'},
-  {bg:'peach',emoji:'🌟',title:'Jupiter',text:'Cloud bands and four moons, lined up like a tiny solar system of their own.'},
-  {bg:'ice',emoji:'✨',title:'Star Clusters',text:'Hundreds of stars packed into one small patch of sky.'},
-  {bg:'mint',emoji:'🔭',title:'Constellations',text:'Traced live with a laser, with the story behind each one told as you watch.'},
-  {bg:'lavender',emoji:'🌌',title:'Milky Way',text:'Visible to the naked eye on a clear night, and photographable right from the beach.'},
-  {bg:'ice',emoji:'🌙',title:'The Moon',text:'A seasonal bonus. When it rises early enough and the sky stays clear, you will know.'}
+  {bg:'butter',emoji:'🪐',title:'Saturn',text:'A beautiful ringed planet that looks extra special when seen through the telescope.'},
+  {bg:'peach',emoji:'🌟',title:'Jupiter',text:'A giant planet with bright moons that feel like tiny companions in the sky.'},
+  {bg:'ice',emoji:'💫',title:'Venus',text:'A bright little jewel that often shines before the stars come out.'},
+  {bg:'mint',emoji:'✨',title:'Star Clusters',text:'Tiny treasure pockets of stars that look like sparkling dust in the night.'},
+  {bg:'lavender',emoji:'🔭',title:'Constellations',text:'We trace fun shapes in the sky and tell stories that make them feel extra special.'},
+  {bg:'ice',emoji:'🌌',title:'Milky Way',text:'On a clear night, the Milky Way can glow across the sky like a magical ribbon.'},
+  {bg:'butter',emoji:'🌙',title:'The Moon',text:'Sometimes the moon joins the party too, making the whole evening feel dreamy.'}
 ];
 
 const BENEFITS = [
-  {bg:'ice',icon:'📸',title:'Your Best Space Photos',text:'Astrophotography through a real telescope, yours to keep.'},
-  {bg:'mint',icon:'🤝',title:'Friends from Everywhere',text:'You may end up between two strangers from two different countries by the end of the night.'},
-  {bg:'lavender',icon:'📖',title:'Stories You Will Retell',text:'Old myths and real science, told under the sky they are actually about.'},
-  {bg:'butter',icon:'🔭',title:'Hands On Telescope Time',text:'You look, you focus, you find. No background in astronomy needed.'},
-  {bg:'peach',icon:'🎁',title:'A Take Home Gift',text:'Stickers, a bookmark, and a card with our details.'},
-  {bg:'mint',icon:'🧘',title:'A Rare Quiet',text:'No screens, no rush. Just sky, stars, and good company.'}
+  {bg:'ice',icon:'📸',title:'Lovely Space Photos',text:'You get to see the sky through a telescope and capture a wonderful memory.'},
+  {bg:'mint',icon:'🤝',title:'New Little Friends',text:'You may end the night sharing stories with people from all around the world.'},
+  {bg:'lavender',icon:'📖',title:'Stories to Tell Later',text:'The stars come with fun stories that feel special long after the night ends.'},
+  {bg:'butter',icon:'🔭',title:'Hands-On Telescope Time',text:'No need to be an expert — just look, smile, and enjoy the wonder.'},
+  {bg:'peach',icon:'🎁',title:'A Little Take-Home Treat',text:'Stickers, a bookmark, and a sweet keepsake to remember the night.'},
+  {bg:'mint',icon:'🧘',title:'A Calm, Cozy Moment',text:'No screens, no rush — just the sky, the stars, and happy company.'}
 ];
 
 /* Replace these src paths with your real uploaded files. Until then,
@@ -426,7 +451,6 @@ timeline.insertAdjacentHTML('beforeend', STEPS.map((s,i)=>`
   <div class="t-step" data-i="${i}">
     <div class="t-node"></div>
     <div class="t-card bg-${s.bg}">
-      <span class="t-time">${s.time}</span>
       <h3>${s.title}</h3>
       <p>${s.text}</p>
     </div>
@@ -619,3 +643,4 @@ copyBtn.addEventListener('click', async ()=>{
 </script>
 </body>
 </html>
+
