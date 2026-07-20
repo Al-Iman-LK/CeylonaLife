@@ -498,7 +498,7 @@ const scrollTarget = scrollRoot || window;
 /* =================================================================
    WHATSAPP LINKS — wires every booking button in one pass
    ================================================================= */
-const waLink = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_MESSAGE);
+const waLink = 'https://api.whatsapp.com/send?phone=' + WA_NUMBER + '&text=' + encodeURIComponent(WA_MESSAGE);
 document.querySelectorAll('[data-wa]').forEach(el=>{
   el.href = waLink;
   el.target = '_blank';
