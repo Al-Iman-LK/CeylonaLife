@@ -94,6 +94,24 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .brand-accent{color:var(--coral);}
 .menu-btn{background:none;border:none;font-size:1.5rem;color:var(--indigo);padding:6px;line-height:1;cursor:pointer;}
 
+/* ---------- PARTNER TICKER (sticky, lives inside topbar) ---------- */
+.partner-strip{
+  overflow:hidden;border-top:1px solid rgba(45,27,110,.06);padding:7px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.partner-track{display:flex;align-items:center;gap:22px;white-space:nowrap;width:max-content;animation:ticker 24s linear infinite;}
+.partner-strip:hover .partner-track,.partner-strip:active .partner-track{animation-play-state:paused;}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.partner-item{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--indigo-soft);}
+.partner-item i{color:var(--teal);font-size:.78rem;}
+.partner-item.partner-soon{color:var(--coral);}
+.partner-item.partner-soon i{color:var(--coral);}
+.partner-dot{color:rgba(45,27,110,.25);font-size:.72rem;}
+@media (prefers-reduced-motion:reduce){
+  .partner-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;}
+}
+
 /* ---------- MOBILE MENU ---------- */
 .mobile-menu{
   position:fixed;inset:0;background:var(--ivory);z-index:40;display:flex;flex-direction:column;
@@ -166,6 +184,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
 .gallery{background:var(--ivory);}
 .testimonials{background:#F2FBF8;}
 .booking{background:linear-gradient(180deg,#FFF8E8,var(--ivory));}
+.partners{background:linear-gradient(180deg,#FFFFFF,#F7F4FF);}
+.card-soon{background:transparent;border:2px dashed rgba(45,27,110,.28);box-shadow:none;display:flex;flex-direction:column;justify-content:center;}
+.partners-note{text-align:center;font-size:.85rem;color:var(--muted);line-height:1.55;max-width:320px;margin:18px auto 0;}
 
 /* ---------- TIMELINE ---------- */
 .timeline{position:relative;padding:6px 0;}
@@ -251,6 +272,9 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       <span class="brand">Ceylona<span class="brand-accent">Life</span></span>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
+    <div class="partner-strip" aria-label="Hotels currently offering the Sky Gazing AstroTour">
+      <div class="partner-track" id="partnerTrack"></div>
+    </div>
   </header>
 
   <nav class="mobile-menu" id="mobileMenu">
@@ -259,6 +283,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       <a href="#why">Why This Sky</a>
       <a href="#journey">The Journey</a>
       <a href="#sky">What You Will See</a>
+      <a href="#partners">Where To Book</a>
       <a href="#ephemeris">Check Sky Guides</a>
       <a href="#gallery">Gallery</a>
       <a href="#booking" class="menu-cta" data-wa>Book Now</a>
@@ -349,6 +374,16 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       <div class="t-list" id="testimonialsList"></div>
     </section>
 
+    <section class="section partners" id="partners">
+      <div class="section-head reveal">
+        <span class="eyebrow">Where To Find Us</span>
+        <h2>Available Now At</h2>
+        <p>Ask at reception, or message us directly on WhatsApp — either works.</p>
+      </div>
+      <div class="grid-2" id="partnersGrid"></div>
+      <p class="partners-note reveal">Not staying at one of these? We still welcome direct bookings for anyone in Passikudah — just message us on WhatsApp.</p>
+    </section>
+
     <section class="section booking" id="booking">
       <div class="section-head reveal">
         <span class="eyebrow">Reserve Your Spot</span>
@@ -436,6 +471,20 @@ const SKY = [
   {bg:'butter',emoji:'🌙',title:'The Moon',text:'A seasonal bonus. When it rises early enough and the sky stays clear, you will know.'}
 ];
 
+/* Add a new hotel by adding one line to each array below — the ticker
+   and the "Available Now At" section both update automatically. */
+const PARTNERS = [
+  {name:'Maalu Maalu Resort & Spa', icon:'fa-solid fa-hotel'},
+  {name:'Gnanam Holiday Inn', icon:'fa-solid fa-bed'},
+  {name:'Shalom Beach Villa', icon:'fa-solid fa-umbrella-beach'}
+];
+
+const PARTNER_HOTELS = [
+  {bg:'mint',icon:'🏝️',title:'Maalu Maalu Resort & Spa',text:'Ask our team at reception, or message us directly to add the AstroTour to your stay.'},
+  {bg:'ice',icon:'🏨',title:'Gnanam Holiday Inn',text:'Book through the front desk or reach us directly on WhatsApp.'},
+  {bg:'peach',icon:'🌴',title:'Shalom Beach Villa',text:'Available for all guests staying at the villa, subject to weather and availability.'}
+];
+
 const BENEFITS = [
   {bg:'ice',icon:'📸',title:'Your Best Space Photos',text:'Astrophotography through a real telescope, yours to keep.'},
   {bg:'mint',icon:'🤝',title:'Friends from Everywhere',text:'You may end up between two strangers from two different countries by the end of the night.'},
@@ -492,6 +541,15 @@ const TESTIMONIALS = [
 const cardHTML = d => `<div class="card bg-${d.bg} reveal in"><span class="icon">${d.icon}</span><h3>${d.title}</h3><p>${d.text}</p></div>`;
 document.getElementById('whyGrid').innerHTML = WHY.map(cardHTML).join('');
 document.getElementById('benefitsGrid').innerHTML = BENEFITS.map(cardHTML).join('');
+
+document.getElementById('partnersGrid').innerHTML = PARTNER_HOTELS.map(cardHTML).join('') +
+  `<div class="card card-soon reveal in"><span class="icon">🤝</span><h3>More Hotels Joining Soon</h3><p>We are onboarding new partner hotels and villas across Passikudah beach.</p></div>`;
+
+const partnerSlide = PARTNERS.map(p=>
+  `<span class="partner-item"><i class="${p.icon}" aria-hidden="true"></i>${p.name}</span><span class="partner-dot">•</span>`
+).join('') +
+  `<span class="partner-item partner-soon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>More hotels joining soon</span><span class="partner-dot">•</span>`;
+document.getElementById('partnerTrack').innerHTML = partnerSlide.repeat(2);
 
 const timeline = document.getElementById('timeline');
 timeline.insertAdjacentHTML('beforeend', STEPS.map((s,i)=>`
